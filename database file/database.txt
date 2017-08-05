@@ -1,0 +1,149 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 31, 2017 at 08:35 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `ems`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounts`
+--
+
+CREATE TABLE `accounts` (
+  `account_id` int(11) NOT NULL,
+  `balance` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`account_id`, `balance`) VALUES
+(1, 4340000),
+(2, 1500),
+(3, 40000),
+(4, 2050000),
+(5, 200000),
+(6, 248000),
+(7, 43000),
+(8, 239000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+CREATE TABLE `employees` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `contact_number` varchar(20) NOT NULL,
+  `email_address` varchar(50) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `age` int(11) NOT NULL,
+  `blood_group` varchar(5) NOT NULL,
+  `nationality` varchar(20) NOT NULL,
+  `department` varchar(50) NOT NULL,
+  `designation` varchar(20) NOT NULL,
+  `salary` float NOT NULL,
+  `account_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`id`, `user_id`, `name`, `contact_number`, `email_address`, `address`, `age`, `blood_group`, `nationality`, `department`, `designation`, `salary`, `account_id`, `status`) VALUES
+(1, 1, 'rakibul islam', '01714635856', 'rakib@gmail.com', 'banani', 51, 'a+', 'bangladeshi', 'management', 'manager', 150000, 1, 1),
+(2, 2, 'kamrul hasan', '01715735498', 'kamrul@gmail.com', 'dhanmondi', 54, 'a+', 'bangladeshi', 'management', 'admin', 60000, 2, 1),
+(3, 3, 'masud', '01738475643', 'masud@yahoo.com', 'uttara', 31, 'o+', 'bangladeshi', 'marketing', 'marketing director', 120000, 3, 1),
+(4, 4, 'tasfiq', '01716453764', 'tasfiq@gmail.com', 'uttara', 29, 'a-', 'bangladeshi', 'marketing', 'marketing communicat', 90000, 4, 1),
+(5, 5, 'polash', '01573647265', 'polash@gmail.com', 'baridhara', 32, 'a+', 'bangladeshi', 'marketing', 'product manager', 80000, 5, 1),
+(6, 6, 'kamal', '01863547364', 'kamal@gmail.com', 'uttara', 35, 'o+', 'bangladeshi', 'management', 'assistant manager', 60000, 6, 1),
+(7, 7, 'akash', '01674536784', 'akash@yahoo.com', 'baridhara', 36, 'o+', 'bangladeshi', 'management', 'product manager', 70000, 7, 1),
+(8, 8, 'sifat', '01746874535', 'sifat@gmail.com', 'gulshan', 36, 'o+', 'bangladeshi', 'marketing', 'marketing manager', 28000, 8, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_login`
+--
+
+CREATE TABLE `user_login` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `user_type` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_login`
+--
+
+INSERT INTO `user_login` (`user_id`, `user_name`, `password`, `user_type`) VALUES
+(1, 'rakib', '12345678', 'admin'),
+(2, 'hasan', '23456789', 'admin'),
+(3, 'masud', '87654321', 'employee'),
+(4, 'tasfiq', '87654321', 'employee'),
+(5, 'polash', '87654321', 'employee'),
+(6, 'kamal', '12345678', 'employee'),
+(7, 'akash', '12345678', 'employee'),
+(8, 'sifat', '12345678', 'employee');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`account_id`);
+
+--
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `account_id` (`account_id`);
+
+--
+-- Indexes for table `user_login`
+--
+ALTER TABLE `user_login`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `user_name` (`user_name`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `user_login`
+--
+ALTER TABLE `user_login`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
